@@ -26,7 +26,7 @@ export default function UserDashboard() {
 
   return (
     <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-      <div className="flex items-center justify-between space-y-2">
+      <div className="flex items-center justify-between space-y-2">m
         <div className="flex items-center space-x-2">
           <SidebarTrigger />
           <div>
@@ -121,18 +121,6 @@ export default function UserDashboard() {
                     <div>
                       <h3 className="font-semibold">Message Dr. Johnson</h3>
                       <p className="text-sm text-muted-foreground">Send a secure message</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-
-              <Link href="/dashboard/user/history">
-                <Card className="cursor-pointer hover:shadow-md transition-shadow">
-                  <CardContent className="flex items-center space-x-4 p-6">
-                    <TrendingUp className="h-8 w-8 text-blue-600" />
-                    <div>
-                      <h3 className="font-semibold">View Progress</h3>
-                      <p className="text-sm text-muted-foreground">Track your wellness journey</p>
                     </div>
                   </CardContent>
                 </Card>

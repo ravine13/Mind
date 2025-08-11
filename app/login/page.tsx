@@ -23,7 +23,7 @@ export default function LoginPage() {
 
 
     try {
-    const res = await fetch(`https://mind-matters-mn7b.onrender.com//login`,{
+    const res = await fetch(`https://mind-matters-mn7b.onrender.com/login`,{
 
       method: "POST",
       headers: {"content-type" : "application/json"},
