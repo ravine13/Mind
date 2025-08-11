@@ -1,17 +1,36 @@
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
 import { Calendar, BookOpen, MessageSquare, TrendingUp, Heart } from "lucide-react"
 import Link from "next/link"
+import { useState, useEffect } from "react";
 
 export default function UserDashboard() {
+  const [name, setName] = useState("User")
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user")
+    if (storedUser) {
+      try {
+        const userObj = JSON.parse(storedUser)
+        if (userObj.username) {
+          setName(userObj.username)
+        }
+      } catch (err) {
+        console.error("Error parsing stored user:", err)
+      }
+    }
+  }, [])
+
   return (
     <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
       <div className="flex items-center justify-between space-y-2">
         <div className="flex items-center space-x-2">
           <SidebarTrigger />
           <div>
-            <h2 className="text-3xl font-bold tracking-tight">Welcome back, John!</h2>
+            <h2 className="text-3xl font-bold tracking-tight">Welcome back, {name}!</h2>
             <p className="text-muted-foreground">Here's your wellness overview</p>
           </div>
         </div>
@@ -156,7 +175,7 @@ export default function UserDashboard() {
                 View All Sessions
               </Button>
             </div>
-          </CardContent>
+          </CardContent>F
         </Card>
       </div>
 
