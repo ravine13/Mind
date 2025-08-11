@@ -1,5 +1,4 @@
 "use client";
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
@@ -26,7 +25,7 @@ export default function UserDashboard() {
 
   return (
     <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-      <div className="flex items-center justify-between space-y-2">m
+      <div className="flex items-center justify-between space-y-2">
         <div className="flex items-center space-x-2">
           <SidebarTrigger />
           <div>
@@ -163,7 +162,7 @@ export default function UserDashboard() {
                 View All Sessions
               </Button>
             </div>
-          </CardContent>F
+          </CardContent>
         </Card>
       </div>
 
