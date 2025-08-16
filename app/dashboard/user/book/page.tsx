@@ -17,7 +17,6 @@ export default function BookSessionPage() {
   const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Store both display label and API value
   const availableTimes = [
     { label: "9:00 AM", value: "09:00:00" },
     { label: "10:00 AM", value: "10:00:00" },
@@ -45,6 +44,7 @@ export default function BookSessionPage() {
     const bookingData = {
       appointment_date: date.toISOString().split("T")[0],
       appointment_time: selectedTime,
+      session_type: sessionType,
       notes: notes || "",
     };
 
@@ -66,17 +66,18 @@ export default function BookSessionPage() {
         body: JSON.stringify(bookingData)
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to create appointment");
+        throw new Error(data.error || data.message || "Failed to create appointment");
       }
 
-      const data = await response.json();
       alert(`✅ Session booked for ${data.appointment_date} at ${data.appointment_time}`);
-      // Reset form
+
       setSelectedTime("");
       setSessionType("");
       setNotes("");
+
     } catch (error: any) {
       alert(`❌ Booking failed: ${error.message}`);
     } finally {
@@ -202,33 +203,6 @@ export default function BookSessionPage() {
             </CardContent>
           </Card>
         </div>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Important Information</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 gap-4 text-sm">
-              <div>
-                <h4 className="font-medium mb-2">Before Your Session</h4>
-                <ul className="space-y-1 text-muted-foreground">
-                  <li>• Find a quiet, private space</li>
-                  <li>• Test your internet connection</li>
-                  <li>• Prepare any questions or topics</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-medium mb-2">Cancellation Policy</h4>
-                <ul className="space-y-1 text-muted-foreground">
-                  <li>• 24-hour notice required</li>
-                  <li>• Emergency cancellations accepted</li>
-                  <li>• Reschedule options available</li>
-                  <li>• Contact us for assistance</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
   );
 }

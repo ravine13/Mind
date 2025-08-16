@@ -26,10 +26,20 @@ export default function UsersPage() {
   useEffect(() => {
     async function fetchAppointments() {
       try {
+        const token = localStorage.getItem("token")
+        if (!token) {
+          console.error("No token found. Please log in.")
+          return
+        }
+
         const res = await fetch("https://mind-matters-mn7b.onrender.com/appointments", {
-          credentials: "include", // if you use cookies for auth
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
         })
+
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`)
+
         const data = await res.json()
         setAppointments(data)
       } catch (err) {

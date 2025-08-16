@@ -7,13 +7,14 @@ export default function AdminMessagesPage() {
     useEffect(() => {
         fetch("https://mind-matters-mn7b.onrender.com/contact-form-submissions", {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}` // only if JWT protected
+                Authorization: `Bearer ${localStorage.getItem("token")}`
             }
         })
             .then(res => res.json())
             .then(data => setMessages(data))
     }, [])
 
+    // @ts-ignore
     return (
         <div className="p-4">
             <h1 className="text-2xl font-bold mb-4">Messages</h1>
